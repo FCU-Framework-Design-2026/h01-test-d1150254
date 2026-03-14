@@ -30,7 +30,7 @@ abstract class AbstractGame{
 class Chess{
     private String name;
     private int type;
-    private int side;
+    private int side;           //0 for black, 1 for red
     private int location;
     private boolean isTurned;
 
@@ -143,11 +143,13 @@ class ChessGame extends AbstractGame{
             else redChess++;
         }
         if(blackChess == 0){
-            System.out.println(player2.name + " wins!");
+            Player winner = (player1.side == 1) ? player1 : player2;
+            System.out.println(winner.name + " wins!");
             return true;
         }
         else if(redChess == 0){
-            System.out.println(player1.name + " wins!");
+            Player winner = (player1.side == 0) ? player1 : player2;
+            System.out.println(winner.name + " wins!");
             return true;
         }
         return false;
