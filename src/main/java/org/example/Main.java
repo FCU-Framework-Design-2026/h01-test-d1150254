@@ -107,13 +107,18 @@ class ChessGame extends AbstractGame{
                 System.out.print(rows[i / 8] + "  ");
             }
             if(board[i] == null){
-                System.out.print("＿  ");
+                System.out.print("_  ");
             }
             else if(!board[i].getisTurned()){
                 System.out.print("X   ");
             }
             else{
-                System.out.print(board[i].getName() + "  ");
+                if(board[i].getSide() == 1){
+                    System.out.print("\u001B[31m" + board[i].getName() + "  " + "\u001B[0m");
+                }
+                else{
+                    System.out.print(board[i].getName() + "  ");
+                }
             }
             if(i % 8 == 7) System.out.println();
         }
