@@ -85,7 +85,9 @@ public class DarkChessFrame extends JFrame {
             boardButtons[i].setText(game.getCellText(i));
             boardButtons[i].setToolTipText(toCoordinate(i));
             if (game.getCellSide(i) == 1) {
-                boardButtons[i].setForeground(new java.awt.Color(230, 72, 72));
+                boardButtons[i].setForeground(Color.red);
+            } else {
+                boardButtons[i].setForeground(Color.black);
             }
             if (boardLocked) {
                 boardButtons[i].setEnabled(false);

@@ -224,7 +224,7 @@ public class DarkChessModel {
                     if (curPlayer.side == -1) {
                         curPlayer.side = targetChess.getSide();
                         player2.side = targetChess.getSide() == 1 ? 0 : 1;
-                        lastMessage = player1.name + "is " + (curPlayer.side == 0 ? "黑棋" : "紅棋");
+                        lastMessage = player1.name + " is " + (curPlayer.side == 0 ? "黑棋" : "紅棋");
                     }
                     return true;
                 }
