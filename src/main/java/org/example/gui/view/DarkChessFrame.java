@@ -8,9 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 
 public class DarkChessFrame extends JFrame {
     private final DarkChessModel.ChessGame game;
@@ -86,6 +84,9 @@ public class DarkChessFrame extends JFrame {
         for (int i = 0; i < 32; i++) {
             boardButtons[i].setText(game.getCellText(i));
             boardButtons[i].setToolTipText(toCoordinate(i));
+            if (game.getCellSide(i) == 1) {
+                boardButtons[i].setForeground(new java.awt.Color(230, 72, 72));
+            }
             if (boardLocked) {
                 boardButtons[i].setEnabled(false);
             } else {

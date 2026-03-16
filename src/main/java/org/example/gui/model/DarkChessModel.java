@@ -80,12 +80,12 @@ public class DarkChessModel {
         private String lastMessage = "";
 
         private final String[] chessName = {
-            "將", "士", "士", "象", "象", "車", "車", "馬", "馬", "包", "包", "卒", "卒", "卒", "卒", "卒",
-            "帥", "仕", "仕", "相", "相", "俥", "俥", "傌", "傌", "炮", "炮", "兵", "兵", "兵", "兵", "兵"
+                "將", "士", "士", "象", "象", "車", "車", "馬", "馬", "包", "包", "卒", "卒", "卒", "卒", "卒",
+                "帥", "仕", "仕", "相", "相", "俥", "俥", "傌", "傌", "炮", "炮", "兵", "兵", "兵", "兵", "兵"
         };
 
         private final int[] chessType = {
-            7, 6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 1, 1, 1, 1, 1
+                7, 6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 1, 1, 1, 1, 1
         };
 
         public ChessGame(Player p1, Player p2) {
@@ -130,6 +130,14 @@ public class DarkChessModel {
                 return "X";
             }
             return chess.getName();
+        }
+
+        public int getCellSide(int location) {
+            Chess chess = board[location];
+            if (chess == null || !chess.getisTurned()) {
+                return -1;
+            }
+            return chess.getSide();
         }
 
         public boolean hasSelectedChess() {
@@ -269,7 +277,7 @@ public class DarkChessModel {
 
         private boolean isValidMove(Chess movingChess, Chess targetChess) {
             if (!targetChess.getisTurned() || movingChess.getSide() == targetChess.getSide()
-                || movingChess.getLocation() == targetChess.getLocation()) {
+                    || movingChess.getLocation() == targetChess.getLocation()) {
                 return false;
             }
 
@@ -287,8 +295,7 @@ public class DarkChessModel {
                             count++;
                         }
                     }
-                }
-                else if (col1 == col2) {
+                } else if (col1 == col2) {
                     for (int i = Math.min(row1, row2) + 1; i < Math.max(row1, row2); i++) {
                         if (board[i * 8 + col1] != null) {
                             count++;
