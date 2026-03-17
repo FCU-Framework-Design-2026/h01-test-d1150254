@@ -159,7 +159,7 @@ public class DarkChessModel {
             }
 
             Chess targetChess = board[location];
-            if (targetChess != null && targetChess.getisTurned() && targetChess.getSide() == curPlayer.side) {
+            if (targetChess != null && targetChess.getisTurned() && targetChess.getLocation() == selectLocation) {
                 return true;
             }
 
@@ -237,13 +237,17 @@ public class DarkChessModel {
                 return false;
             } else {
                 Chess movingChess = board[selectLocation];
+                if(location == selectLocation){
+                    selectLocation = -1;
+                    return false;
+                }
                 if (targetChess != null && targetChess.getisTurned() && targetChess.getSide() == curPlayer.side) {
                     selectLocation = location;
                     lastMessage = curPlayer.name + " choose " + targetChess.getName();
                     return false;
                 }
                 if (targetChess != null && isValidMove(movingChess, targetChess)) {
-                    lastMessage = movingChess.getName() + "eat" + targetChess.getName();
+                    lastMessage = movingChess.getName() + " eat " + targetChess.getName();
 
                     board[location] = movingChess;
                     movingChess.setLocation(location);
@@ -261,7 +265,7 @@ public class DarkChessModel {
                         lastMessage = "Invalid move!";
                         return false;
                     }
-                    lastMessage = movingChess.getName() + "move success";
+                    lastMessage = movingChess.getName() + " move success";
                     board[location] = movingChess;
                     movingChess.setLocation(location);
                     board[selectLocation] = null;
